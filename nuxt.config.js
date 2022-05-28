@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'movie-website',
+    title: 'Movie',
     htmlAttrs: {
       lang: 'en',
     },
@@ -11,14 +11,18 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon1.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/css/tailwind.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/vueSlickCarousel.js', '~/plugins/vueClickAway.js'],
+  plugins: [
+    '~/plugins/vueSlickCarousel.js',
+    '~/plugins/vueClickAway.js',
+    '~/plugins/globalComponents.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
