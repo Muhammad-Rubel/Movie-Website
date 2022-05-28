@@ -1,5 +1,7 @@
 export const state = () => {
   return {
+    apiKey: 'e2fd338f1c16bc07f7e1e3b885357d42',
+    apiUrl: 'https://api.themoviedb.org/3',
     imgConfig: null,
     popularMovies: [],
     nowPlayingMovies: [],
@@ -21,11 +23,10 @@ export const mutations = {
 }
 
 export const actions = {
-  async getImgConfig({ commit }) {
+  async getImgConfig({ commit, state }) {
     try {
-      console.log(process.env.API_URL)
       const res = await this.$axios.$get(
-        `${process.env.API_URL}/imgConfig?api_key=${process.env.API_KEY}`
+        `${state.apiUrl}/configuration?api_key=${state.apiKey}`
       )
 
       commit('SET_IMAGE_CONFIG', res)
@@ -34,10 +35,10 @@ export const actions = {
     }
   },
 
-  async getPopularMovies({ commit }) {
+  async getPopularMovies({ commit, state }) {
     try {
       const res = await this.$axios.$get(
-        `${process.env.API_URL}/movie/popular?api_key=${process.env.API_KEY}`
+        `${state.apiUrl}/movie/popular?api_key=${state.apiKey}`
       )
 
       commit('SET_POPULAR_MOVIES', res.results)
@@ -46,10 +47,10 @@ export const actions = {
     }
   },
 
-  async getNowPlayingMovies({ commit }) {
+  async getNowPlayingMovies({ commit, state }) {
     try {
       const res = await this.$axios.$get(
-        `${process.env.API_URL}/movie/now_playing?api_key=${process.env.API_KEY}`
+        `${state.apiUrl}/movie/now_playing?api_key=${state.apiKey}`
       )
 
       commit('SET_NOW_PLAYING_MOVIES', res)

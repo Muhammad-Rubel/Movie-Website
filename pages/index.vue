@@ -1,17 +1,12 @@
 <template>
-  <div class="p-4">
-    <h3>Most Popular Movies</h3>
+  <div class="p-4 pt-10 overflow-hidden">
+    <h3 class="heading-1">Most Popular Movies</h3>
 
     <!-- most popular movies -->
-    <div v-if="popularMovies.length" class="space-y-4 mt-6">
-      <div v-for="(item, i) in popularMovies" :key="i">
-        <div>
-          <img :src="item.image || ''" alt="" />
-        </div>
-
-        <div>
-          <h4>{{ item.title || '' }}</h4>
-          <p>{{ item.overview || '' }}</p>
+    <div class="mt-6">
+      <div class="grid grid-cols-5 gap-8">
+        <div v-for="(item, i) in nowPlayingMovies" :key="i">
+          <movie-card :data="item"></movie-card>
         </div>
       </div>
     </div>
@@ -19,11 +14,23 @@
 </template>
 
 <script>
+import MovieCard from '../components/MovieCard.vue'
+
 export default {
-  name: 'IndexPage',
+  components: { MovieCard },
 
   data() {
-    return {}
+    return {
+      settings: {
+        dots: true,
+        dotsClass: 'slick-dots custom-dot-class',
+        edgeFriction: 0.35,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    }
   },
 
   // async fetch() {
@@ -39,7 +46,7 @@ export default {
   //     //   `https://imdb-api.com/en/API/MostPopularMovies/${apiKey}`
   //     // )
   //     const resPopular = await this.$axios.$get(
-  //       `/movie/popular?api_key=${process.env.API_KEY}`
+  //       `${this.apiUrl}/movie/popular?api_key=${this.apiKey}`
   //     )
 
   //     console.log(resPopular)
@@ -57,6 +64,14 @@ export default {
   // },
 
   computed: {
+    apiKey() {
+      return this.$store.state.apiKey
+    },
+
+    apiUrl() {
+      return this.$store.state.apiUrl
+    },
+
     imgConfig() {
       return this.$store.state.imgConfig
     },
@@ -68,11 +83,21 @@ export default {
     nowPlayingMovies() {
       return this.$store.state.nowPlayingMovies
     },
+
+    getImage() {
+      return (baseUrl, fileSize, filePath) => {
+        return `${baseUrl}${fileSize}${filePath}`
+      }
+    },
   },
 
   mounted() {
-    console.log('Test', this.mostPopularMovies)
-    console.log(process.env.API_KEY)
+    console.log(
+      'Test',
+      this.imgConfig,
+      this.popularMovies,
+      this.nowPlayingMovies
+    )
   },
 }
 </script>
