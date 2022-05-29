@@ -1,6 +1,9 @@
 <template>
   <section>
-    <h3 class="heading-1">{{ title }}</h3>
+    <div class="flex justify-between">
+      <h3 class="heading-1">{{ title }}</h3>
+      <button class="text-green-400">See all</button>
+    </div>
 
     <div class="mt-6">
       <div class="">

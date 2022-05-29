@@ -2,7 +2,7 @@
   <div>
     <Header></Header>
 
-    <main class="pt-16 width-1200">
+    <main class="pt-16">
       <Nuxt />
     </main>
   </div>
@@ -28,7 +28,7 @@ export default {
           `${this.apiUrl}/movie/popular?api_key=${this.apiKey}`
         )
 
-        console.log(popularMoviesRes)
+        // console.log(popularMoviesRes)
         this.$store.commit('SET_POPULAR_MOVIES', popularMoviesRes.results)
       }
       if (this.nowPlayingMovies.length === 0) {
@@ -36,27 +36,33 @@ export default {
           `${this.apiUrl}/movie/now_playing?api_key=${this.apiKey}`
         )
 
-        console.log(nowPlayingMoviesRes)
+        // console.log(nowPlayingMoviesRes)
         this.$store.commit(
           'SET_NOW_PLAYING_MOVIES',
           nowPlayingMoviesRes.results
         )
       }
+
+      if (this.upcomingMovies.length === 0) {
+        const upcomingMoviesRes = await this.$axios.$get(
+          `${this.apiUrl}/movie/upcoming?api_key=${this.apiKey}`
+        )
+
+        // console.log(upcomingMoviesRes)
+        this.$store.commit('SET_UPCOMING_MOVIES', upcomingMoviesRes.results)
+      }
+
+      if (this.latestTvShows.length === 0) {
+        const latestTvShowsRes = await this.$axios.$get(
+          `${this.apiUrl}/tv/on_the_air?api_key=${this.apiKey}`
+        )
+
+        // console.log(latestTvShowsRes)
+        this.$store.commit('SET_LATEST_TV_SHOWS', latestTvShowsRes.results)
+      }
     } catch (err) {
       console.log(err)
     }
-
-    // if (!this.popularMovies.length) {
-    //   this.$store.dispatch('getPopularMovies')
-    // }
-
-    // if (!this.nowPlayingMovies.length) {
-    //   this.$store.dispatch('getNowPlayingMovies')
-    // }
-
-    // if (!this.imgConfig) {
-    //   this.$store.dispatch('getImgConfig')
-    // }
   },
 
   computed: {
@@ -78,6 +84,14 @@ export default {
 
     nowPlayingMovies() {
       return this.$store.state.nowPlayingMovies
+    },
+
+    latestTvShows() {
+      return this.$store.state.latestTvShows
+    },
+
+    upcomingMovies() {
+      return this.$store.state.upcomingMovies
     },
   },
 }

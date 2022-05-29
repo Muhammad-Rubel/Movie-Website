@@ -5,6 +5,8 @@ export const state = () => {
     imgConfig: null,
     popularMovies: [],
     nowPlayingMovies: [],
+    upcomingMovies: [],
+    latestTvShows: [],
   }
 }
 
@@ -19,6 +21,14 @@ export const mutations = {
 
   SET_NOW_PLAYING_MOVIES(state, val) {
     state.nowPlayingMovies = val
+  },
+
+  SET_UPCOMING_MOVIES(state, val) {
+    state.upcomingMovies = val
+  },
+
+  SET_LATEST_TV_SHOWS(state, val) {
+    state.latestTvShows = val
   },
 }
 
@@ -54,6 +64,18 @@ export const actions = {
       )
 
       commit('SET_NOW_PLAYING_MOVIES', res)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  async getUpcomingMovies({ commit, state }) {
+    try {
+      const res = await this.$axios.$get(
+        `${state.apiUrl}/movie/upcoming?api_key=${state.apiKey}`
+      )
+
+      commit('SET_UPCOMING_MOVIES', res)
     } catch (err) {
       console.log(err)
     }

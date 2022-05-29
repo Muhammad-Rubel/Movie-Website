@@ -1,28 +1,30 @@
 <template>
   <div>
-    <!-- Image -->
-    <div>
-      <img
-        :src="
-          getImage(
-            imgConfig.secure_base_url,
-            imgConfig.poster_sizes[2],
-            data.poster_path
-          ) || ''
-        "
-        alt=""
-        class="w-full"
-      />
-    </div>
-
-    <!-- text -->
-    <div class="mt-2">
-      <div class="text-xs flex justify-between items-center">
-        <span>Rating: {{ data.vote_average || '' }}</span>
-        <span>{{ data.release_date || '' }}</span>
+    <nuxt-link :to="`/movies/${data.id}`">
+      <!-- Image -->
+      <div>
+        <img
+          :src="
+            getImage(
+              imgConfig.secure_base_url,
+              imgConfig.poster_sizes[2],
+              data.poster_path
+            ) || ''
+          "
+          alt=""
+          class="w-full"
+        />
       </div>
-      <h4 class="mt-1 text-primary line-clamp-2">{{ data.title || '' }}</h4>
-    </div>
+
+      <!-- text -->
+      <div class="mt-2">
+        <div class="text-xs flex justify-between items-center">
+          <span>Rating: {{ data.vote_average || '' }}</span>
+          <span>{{ data.release_date || '' }}</span>
+        </div>
+        <h4 class="mt-1 text-primary line-clamp-2">{{ data.title || '' }}</h4>
+      </div>
+    </nuxt-link>
   </div>
 </template>
 
