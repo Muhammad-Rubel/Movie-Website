@@ -1,23 +1,16 @@
 <template>
-  <div class="p-4 pt-10 overflow-hidden">
-    <h3 class="heading-1">Most Popular Movies</h3>
-
-    <!-- most popular movies -->
-    <div class="mt-6">
-      <div class="grid grid-cols-5 gap-8">
-        <div v-for="(item, i) in nowPlayingMovies" :key="i">
-          <movie-card :data="item"></movie-card>
-        </div>
-      </div>
+  <div class="p-4 md:pt-10">
+    <div class="space-y-6 md:space-y-8">
+      <slider :data="nowPlayingMovies" title="In Theaters"></slider>
+      <slider :data="popularMovies" title="Popular Movies"></slider>
     </div>
   </div>
 </template>
 
 <script>
-import MovieCard from '../components/MovieCard.vue'
-
+import Slider from '../components/Slider.vue'
 export default {
-  components: { MovieCard },
+  components: { Slider },
 
   data() {
     return {

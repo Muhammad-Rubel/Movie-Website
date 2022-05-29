@@ -21,7 +21,7 @@
         <span>Rating: {{ data.vote_average || '' }}</span>
         <span>{{ data.release_date || '' }}</span>
       </div>
-      <h4 class="mt-1 text-primary">{{ data.title || '' }}</h4>
+      <h4 class="mt-1 text-primary line-clamp-2">{{ data.title || '' }}</h4>
     </div>
   </div>
 </template>
