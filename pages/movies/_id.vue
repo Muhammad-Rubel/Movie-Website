@@ -4,8 +4,8 @@
       <img
         :src="
           getImage(
-            imgConfig.secure_base_url,
-            imgConfig.backdrop_sizes[3],
+            configuration.images.secure_base_url,
+            configuration.images.backdrop_sizes[3],
             data && data.backdrop_path
           )
         "
@@ -18,8 +18,8 @@
         <img
           :src="
             getImage(
-              imgConfig.secure_base_url,
-              imgConfig.poster_sizes[3],
+              configuration.images.secure_base_url,
+              configuration.images.poster_sizes[3],
               data.poster_path
             )
           "
@@ -72,8 +72,8 @@ export default {
       return this.$store.state.apiUrl
     },
 
-    imgConfig() {
-      return this.$store.state.imgConfig
+    configuration() {
+      return this.$store.state.configuration
     },
   },
 

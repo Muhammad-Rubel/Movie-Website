@@ -1,31 +1,43 @@
 <template>
   <div class="p-4 md:pt-10 width-1200">
     <div class="space-y-6 md:space-y-8">
-      <slider :data="nowPlayingMovies || []" title="In Theaters"></slider>
+      <!-- <slider :data="nowPlayingMovies || []" title="In Theaters"></slider> -->
       <!-- <slider :data="popularMovies || []" title="Popular Movies"></slider> -->
-      <slider :data="upcomingMovies || []" title="Upcoming Movies"></slider>
-      <slider :data="latestTvShows || []" title="Latest Tv Shows"></slider>
+      <!-- <slider :data="upcomingMovies || []" title="Upcoming Movies"></slider> -->
+      <!-- <slider :data="latestTvShows || []" title="Latest Tv Shows"></slider> -->
     </div>
   </div>
 </template>
 
 <script>
-import Slider from '../components/Slider.vue'
+// import Slider from '../components/Slider.vue'
 export default {
-  components: { Slider },
+  // components: { Slider },
+
+  async asyncData({ store }) {
+    if (store.state.popularMovies.length === 0) {
+      await store.dispatch('getPopularMovies')
+    }
+
+    if (store.state.nowPlayingMovies.length === 0) {
+      await store.dispatch('getNowPlayingMovies')
+    }
+
+    if (store.state.latestMovieTrailers.length === 0) {
+      await store.dispatch('getLatestMovieTrailers')
+    }
+
+    if (store.state.latestTvShowTrailers.length === 0) {
+      await store.dispatch('getLatestTvShowTrailers')
+    }
+
+    if (store.state.upcomingMovies.length === 0) {
+      await store.dispatch('getUpcomingMovies')
+    }
+  },
 
   data() {
-    return {
-      settings: {
-        dots: true,
-        dotsClass: 'slick-dots custom-dot-class',
-        edgeFriction: 0.35,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    }
+    return {}
   },
 
   computed: {
@@ -37,8 +49,8 @@ export default {
       return this.$store.state.apiUrl
     },
 
-    imgConfig() {
-      return this.$store.state.imgConfig
+    configuration() {
+      return this.$store.state.configuration
     },
 
     popularMovies() {
@@ -65,7 +77,7 @@ export default {
   },
 
   mounted() {
-    console.log('Test', this.imgConfig, this.popularMovies, this.latestTvShows)
+    console.log('Test', this.configuration)
   },
 }
 </script>
