@@ -6,8 +6,8 @@
         <img
           :src="
             getImage(
-              imgConfig.secure_base_url,
-              imgConfig.poster_sizes[2],
+              configuration.images.secure_base_url,
+              configuration.images.poster_sizes[2],
               data.poster_path
             ) || ''
           "
@@ -18,18 +18,24 @@
 
       <!-- text -->
       <div class="mt-2">
-        <div class="text-xs flex justify-between items-center">
+        <div class="text-sm flex justify-between items-center">
           <span>Rating: {{ data.vote_average || '' }}</span>
           <span>{{ data.release_date || '' }}</span>
         </div>
-        <h4 class="mt-1 text-primary line-clamp-2">{{ data.title || '' }}</h4>
+        <h4 class="mt-1 text-primary line-clamp-2 text-lg">
+          {{ data.title || '' }}
+        </h4>
       </div>
     </nuxt-link>
   </div>
 </template>
 
 <script>
+import getImageMixin from '~/mixins/getImageMixin'
+
 export default {
+  mixins: [getImageMixin],
+
   props: {
     data: {
       type: Object,
@@ -38,14 +44,8 @@ export default {
   },
 
   computed: {
-    imgConfig() {
-      return this.$store.state.imgConfig
-    },
-
-    getImage() {
-      return (baseUrl, fileSize, filePath) => {
-        return `${baseUrl}${fileSize}${filePath}`
-      }
+    configuration() {
+      return this.$store.state.configuration
     },
   },
 }

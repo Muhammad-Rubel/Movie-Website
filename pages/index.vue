@@ -2,16 +2,17 @@
   <div class="p-4 md:pt-10 width-1200">
     <div class="space-y-6 md:space-y-8">
       <!-- <slider :data="nowPlayingMovies || []" title="In Theaters"></slider> -->
-      <!-- <slider :data="popularMovies || []" title="Popular Movies"></slider> -->
-      <!-- <slider :data="upcomingMovies || []" title="Upcoming Movies"></slider> -->
-      <!-- <slider :data="latestTvShows || []" title="Latest Tv Shows"></slider> -->
+      <whats-popular></whats-popular>
     </div>
   </div>
 </template>
 
 <script>
+import WhatsPopular from '../components/homepage/WhatsPopular.vue'
 // import Slider from '../components/Slider.vue'
+
 export default {
+  components: { WhatsPopular },
   // components: { Slider },
 
   async asyncData({ store }) {
@@ -102,12 +103,6 @@ export default {
 
     trendingTvShowsWeek() {
       return this.$store.state.trendingTvShowsWeek
-    },
-
-    getImage() {
-      return (baseUrl, fileSize, filePath) => {
-        return `${baseUrl}${fileSize}${filePath}`
-      }
     },
   },
 
