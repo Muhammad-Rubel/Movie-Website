@@ -42,9 +42,9 @@
       <div>
         <Splide :options="options">
           <splide-slide v-for="(item, i) in getCurrentData" :key="i">
-            <div class="py-6">
+            <a href="" class="py-6 block">
               <div
-                class="w-full h-44 overflow-hidden rounded-xl transform hover:scale-105 transition-transform duration-300 ease-in-out"
+                class="relative w-full h-44 overflow-hidden rounded-xl transform hover:scale-105 transition-transform duration-300 ease-in-out"
               >
                 <img
                   :src="
@@ -57,14 +57,24 @@
                   alt=""
                   class="w-full h-full object-cover object-center"
                 />
-              </div>
 
-              <div class="">
-                <div class="text-white text-center">
-                  <h3 class="text-2xl font-bold">{{ item.title }}</h3>
+                <!-- play btn -->
+                <div
+                  class="absolute top-0 left-0 h-full w-full flex justify-center items-center"
+                >
+                  <icons name="play" class-list="h-10 w-10 text-white"></icons>
                 </div>
               </div>
-            </div>
+
+              <div class="mt-2">
+                <div class="text-white text-center">
+                  <h3 class="text-xl font-bold">
+                    <span v-if="item.title">{{ item.title }}</span>
+                    <span v-if="item.name">{{ item.name }}</span>
+                  </h3>
+                </div>
+              </div>
+            </a>
           </splide-slide>
         </Splide>
       </div>
@@ -73,9 +83,12 @@
 </template>
 
 <script>
+import Icons from '../Icons.vue'
 import getImageMixin from '~/mixins/getImageMixin'
 
 export default {
+  components: { Icons },
+
   mixins: [getImageMixin],
 
   data() {
@@ -84,7 +97,7 @@ export default {
       options: {
         type: 'loop',
         perPage: 4,
-        gap: '2rem',
+        gap: '1.5rem',
         pagination: false,
         breakpoints: {
           1024: {
@@ -135,6 +148,10 @@ export default {
         return this.latestTvShows
       }
     },
+  },
+
+  mounted() {
+    console.log(this.getCurrentData)
   },
 }
 </script>

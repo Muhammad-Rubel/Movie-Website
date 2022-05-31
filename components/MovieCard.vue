@@ -23,7 +23,8 @@
           <span>{{ data.release_date || '' }}</span>
         </div>
         <h4 class="mt-1 text-primary line-clamp-2 text-lg">
-          {{ data.title || '' }}
+          <span v-if="data.title">{{ data.title || '' }}</span>
+          <span v-if="data.name">{{ data.name || '' }}</span>
         </h4>
       </div>
     </nuxt-link>
