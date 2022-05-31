@@ -19,20 +19,35 @@ export default {
       await store.dispatch('getPopularMovies')
     }
 
+    if (store.state.popularTvShows.length === 0) {
+      await store.dispatch('getPopularTvShows')
+    }
+
     if (store.state.nowPlayingMovies.length === 0) {
       await store.dispatch('getNowPlayingMovies')
     }
 
-    if (store.state.latestMovieTrailers.length === 0) {
-      await store.dispatch('getLatestMovieTrailers')
-    }
-
-    if (store.state.latestTvShowTrailers.length === 0) {
-      await store.dispatch('getLatestTvShowTrailers')
-    }
-
     if (store.state.upcomingMovies.length === 0) {
       await store.dispatch('getUpcomingMovies')
+    }
+
+    if (store.state.latestTvShows.length === 0) {
+      await store.dispatch('getLatestTvShows')
+    }
+
+    if (store.state.trendingMoviesToday.length === 0) {
+      await store.dispatch('getTrendingMoviesToday')
+    }
+
+    if (store.state.trendingMviesWeek.length === 0) {
+      await store.dispatch('getTrendingMoviesWeek')
+    }
+
+    if (store.state.trendingTvShowsToday.length === 0) {
+      await store.dispatch('getTrendingTvShowsToday')
+    }
+    if (store.state.trendingTvShowsWeek.length === 0) {
+      await store.dispatch('getTrendingTvShowsWeek')
     }
   },
 
@@ -57,6 +72,10 @@ export default {
       return this.$store.state.popularMovies
     },
 
+    popularTvShows() {
+      return this.$store.state.popularTvShows
+    },
+
     nowPlayingMovies() {
       return this.$store.state.nowPlayingMovies
     },
@@ -67,6 +86,22 @@ export default {
 
     latestTvShows() {
       return this.$store.state.latestTvShows
+    },
+
+    trendingMoviesToday() {
+      return this.$store.state.trendingMoviesToday
+    },
+
+    trendingMviesWeek() {
+      return this.$store.state.trendingMviesWeek
+    },
+
+    trendingTvShowsToday() {
+      return this.$store.state.trendingTvShowsToday
+    },
+
+    trendingTvShowsWeek() {
+      return this.$store.state.trendingTvShowsWeek
     },
 
     getImage() {

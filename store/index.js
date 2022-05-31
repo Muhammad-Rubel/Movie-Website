@@ -8,6 +8,10 @@ export const state = () => {
     nowPlayingMovies: [],
     upcomingMovies: [],
     latestTvShows: [],
+    trendingMoviesToday: [],
+    trendingMviesWeek: [],
+    trendingTvShowsToday: [],
+    trendingTvShowsWeek: [],
   }
 }
 
@@ -34,6 +38,22 @@ export const mutations = {
 
   SET_LATEST_TV_SHOWS(state, val) {
     state.latestTvShows = val
+  },
+
+  SET_TRENDING_MOVIES_TODAY(state, val) {
+    state.trendingMoviesToday = val
+  },
+
+  SET_TRENDING_MOVIES_WEEK(state, val) {
+    state.trendingMviesWeek = val
+  },
+
+  SET_TRENDING_TV_SHOWS_TODAY(state, val) {
+    state.trendingTvShowsToday = val
+  },
+
+  SET_TRENDING_TV_SHOWS_WEEK(state, val) {
+    state.trendingTvShowsWeek = val
   },
 }
 
@@ -106,6 +126,54 @@ export const actions = {
       )
 
       commit('SET_LATEST_TV_SHOWS', res.results)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  async getTrendingMoviesToday({ commit, state }) {
+    try {
+      const res = await this.$axios.$get(
+        `${state.apiUrl}/trending/movie/day?api_key=${state.apiKey}`
+      )
+
+      commit('SET_TRENDING_MOVIES_TODAY', res.results)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  async getTrendingMoviesWeek({ commit, state }) {
+    try {
+      const res = await this.$axios.$get(
+        `${state.apiUrl}/trending/movie/week?api_key=${state.apiKey}`
+      )
+
+      commit('SET_TRENDING_MOVIES_WEEK', res.results)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  async getTrendingTvShowsToday({ commit, state }) {
+    try {
+      const res = await this.$axios.$get(
+        `${state.apiUrl}/trending/tv/day?api_key=${state.apiKey}`
+      )
+
+      commit('SET_TRENDING_TV_SHOWS_TODAY', res.results)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  async getTrendingTvShowsWeek({ commit, state }) {
+    try {
+      const res = await this.$axios.$get(
+        `${state.apiUrl}/trending/tv/week?api_key=${state.apiKey}`
+      )
+
+      commit('SET_TRENDING_TV_SHOWS_WEEK', res.results)
     } catch (err) {
       console.log(err)
     }
