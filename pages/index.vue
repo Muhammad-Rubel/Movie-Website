@@ -1,19 +1,20 @@
 <template>
   <div class="p-4 md:pt-10 width-1200">
     <div class="space-y-6 md:space-y-8">
-      <!-- <slider :data="nowPlayingMovies || []" title="In Theaters"></slider> -->
       <whats-popular></whats-popular>
+      <latest-trailers></latest-trailers>
+      <trending></trending>
     </div>
   </div>
 </template>
 
 <script>
+import LatestTrailers from '../components/homepage/LatestTrailers.vue'
+import Trending from '../components/homepage/Trending.vue'
 import WhatsPopular from '../components/homepage/WhatsPopular.vue'
-// import Slider from '../components/Slider.vue'
 
 export default {
-  components: { WhatsPopular },
-  // components: { Slider },
+  components: { WhatsPopular, LatestTrailers, Trending },
 
   async asyncData({ store }) {
     if (store.state.popularMovies.length === 0) {
@@ -32,7 +33,7 @@ export default {
       await store.dispatch('getUpcomingMovies')
     }
 
-    if (store.state.latestTvShows.length === 0) {
+    if (!store.state.latestTvShows) {
       await store.dispatch('getLatestTvShows')
     }
 

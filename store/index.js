@@ -77,7 +77,6 @@ export const actions = {
       )
 
       commit('SET_POPULAR_MOVIES', res.results)
-      console.log(state.popularMovies)
     } catch (err) {
       console.log(err)
     }
@@ -125,7 +124,7 @@ export const actions = {
         `${state.apiUrl}/tv/latest?api_key=${state.apiKey}`
       )
 
-      commit('SET_LATEST_TV_SHOWS', res.results)
+      commit('SET_LATEST_TV_SHOWS', res)
     } catch (err) {
       console.log(err)
     }

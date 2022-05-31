@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="py-6">
     <div class="flex justify-start items-center space-x-8">
       <h2 class="heading-1">What's Popular</h2>
 
