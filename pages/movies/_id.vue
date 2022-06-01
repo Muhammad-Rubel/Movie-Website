@@ -1,13 +1,17 @@
 <template>
   <div>
     <general-info :data="details" :cast-n-crews="castNCrews"></general-info>
+
+    <cast :data="castNCrews.cast"></cast>
   </div>
 </template>
 
 <script>
+import Cast from '../../components/movie/Cast.vue'
 import GeneralInfo from '../../components/movie/GeneralInfo.vue'
 export default {
-  components: { GeneralInfo },
+  components: { GeneralInfo, Cast },
+
   data() {
     return {
       details: null,
