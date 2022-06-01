@@ -1,6 +1,7 @@
 <template>
-  <div class="p-4 md:pt-10 width-1200">
+  <div class="md:pt-10 width-1200">
     <div class="space-y-6 md:space-y-8">
+      <search></search>
       <whats-popular></whats-popular>
       <latest-trailers></latest-trailers>
       <trending></trending>
@@ -10,11 +11,12 @@
 
 <script>
 import LatestTrailers from '../components/homepage/LatestTrailers.vue'
+import Search from '../components/homepage/Search.vue'
 import Trending from '../components/homepage/Trending.vue'
 import WhatsPopular from '../components/homepage/WhatsPopular.vue'
 
 export default {
-  components: { WhatsPopular, LatestTrailers, Trending },
+  components: { WhatsPopular, LatestTrailers, Trending, Search },
 
   async asyncData({ store }) {
     if (store.state.popularMovies.length === 0) {

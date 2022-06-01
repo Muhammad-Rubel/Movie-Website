@@ -4,7 +4,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  @apply bg-gray-900 text-secondary
+  @apply bg-gray-50 text-gray-900
 }
 
 a,
