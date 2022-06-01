@@ -14,7 +14,7 @@
             v-for="(item, i) in navItems"
             :key="i"
             :href="item.url"
-            class="text-lg font-semibold border-b-2 border-transparent hover:border-primary hover:text-primary custom-transition"
+            class="text-lg text-white font-semibold border-b-2 border-transparent hover:border-white custom-transition"
             >{{ item.name }}</a
           >
         </nav>

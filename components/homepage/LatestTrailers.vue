@@ -1,7 +1,7 @@
 <template>
-  <section class="relative overflow-hidden py-6">
+  <section v-if="getCurrentData" class="relative overflow-hidden">
     <!-- image -->
-    <div class="absolute top-0 left-0 right-0 opacity-20 z-0">
+    <div class="absolute top-0 left-0 right-0 z-0">
       <img
         :src="
           getImage(
@@ -19,7 +19,7 @@
     </div>
 
     <!-- main content -->
-    <div class="relative z-10 py-6 px-4">
+    <div class="relative z-10 py-12 px-4 bg-darkBlue bg-opacity-80 text-white">
       <!-- title and buttons -->
       <div class="flex justify-start items-center space-x-8">
         <h2 class="heading-1">Latest Trailer</h2>
@@ -27,7 +27,7 @@
         <div class="border rounded-3xl border-primary">
           <button
             class="tab-button"
-            :class="activeTab === 'tv' && 'bg-primary'"
+            :class="activeTab === 'tv' && 'bg-gradient text-darkBlue'"
             @click="activeTab = 'tv'"
           >
             On Tv
@@ -35,7 +35,7 @@
 
           <button
             class="tab-button"
-            :class="activeTab === 'movie' && 'bg-primary'"
+            :class="activeTab === 'movie' && 'bg-gradient text-darkBlue'"
             @click="activeTab = 'movie'"
           >
             On Theaters
@@ -103,7 +103,7 @@ export default {
     return {
       activeTab: 'tv', // tv or movie
       options: {
-        type: 'loop',
+        type: 'slide',
         perPage: 4,
         gap: '1.5rem',
         pagination: false,
@@ -157,11 +157,11 @@ export default {
       }
     },
   },
-
-  mounted() {
-    console.log(this.getCurrentData)
-  },
 }
 </script>
 
-<style></style>
+<style scoped>
+.bg-gradient {
+  @apply bg-gradient-to-r from-lighterGreen to-lightGreen;
+}
+</style>

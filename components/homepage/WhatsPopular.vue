@@ -1,8 +1,9 @@
 <template>
-  <section class="py-6">
+  <section v-if="popularMovies && popularTvShows" class="py-6">
     <div class="flex justify-start items-center space-x-8 px-4">
       <h2 class="heading-1">What's Popular</h2>
 
+      <!-- buttons -->
       <div class="border rounded-3xl border-darkBlue flex">
         <button
           class="tab-button"

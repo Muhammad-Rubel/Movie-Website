@@ -1,12 +1,12 @@
 <template>
-  <section class="py-6">
+  <section v-if="trendingMoviesToday && trendingMviesWeek" class="pt-6 pb-12">
     <div class="flex justify-start items-center space-x-8">
       <h2 class="heading-1">Trending</h2>
 
-      <div class="border rounded-3xl border-primary">
+      <div class="border rounded-3xl border-darkBlue">
         <button
           class="tab-button"
-          :class="activeTab === 'today' && 'bg-primary'"
+          :class="activeTab === 'today' && 'bg-darkBlue text-white'"
           @click="activeTab = 'today'"
         >
           Today
@@ -14,7 +14,7 @@
 
         <button
           class="tab-button"
-          :class="activeTab === 'week' && 'bg-primary'"
+          :class="activeTab === 'week' && 'bg-darkBlue text-white'"
           @click="activeTab = 'week'"
         >
           Week

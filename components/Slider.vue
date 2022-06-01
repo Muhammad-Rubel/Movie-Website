@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="mt-6">
+    <div class="mt-6 custom-shadow">
       <div class="">
         <Splide :options="options">
           <SplideSlide v-for="(item, i) in data" :key="i">
@@ -31,27 +31,32 @@ export default {
   data() {
     return {
       options: {
-        type: 'loop',
-        perPage: 5,
-        gap: '2rem',
+        type: 'slide',
+        perPage: 7,
+        gap: '1rem',
         pagination: false,
         padding: {
           left: '1rem',
-          right: '1rem',
+          right: '5rem',
         },
         breakpoints: {
-          1024: {
-            perPage: 4,
+          1100: {
+            perPage: 5,
+            padding: {
+              right: '6rem',
+            },
           },
-          768: {
-            perPage: 3,
+          900: {
+            perPage: 4,
+            padding: {
+              right: '3rem',
+            },
           },
           640: {
-            perPage: 2,
+            perPage: 3,
           },
           450: {
             perPage: 2,
-            gap: '1rem',
           },
         },
       },
@@ -60,4 +65,10 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+.custom-shadow {
+  box-shadow: -29px -1px 49px -24px rgba(255, 254, 254, 0.75) inset;
+  -webkit-box-shadow: -29px -1px 49px -24px rgba(255, 254, 254, 0.75) inset;
+  -moz-box-shadow: -29px -1px 49px -24px rgba(255, 254, 254, 0.75) inset;
+}
+</style>
