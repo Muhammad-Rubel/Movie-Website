@@ -1,5 +1,5 @@
 <template>
-  <div class="md:pt-10 width-1200">
+  <div class="width-1200">
     <div class="space-y-6 md:space-y-8">
       <search></search>
       <whats-popular></whats-popular>
