@@ -5,8 +5,12 @@
       <img
         :src="
           getImage(
-            configuration.images.secure_base_url,
-            configuration.images.backdrop_sizes[3],
+            configuration &&
+              configuration.images &&
+              configuration.images.secure_base_url,
+            configuration &&
+              configuration.images &&
+              configuration.images.backdrop_sizes[3],
             getBackdropImage
           )
         "

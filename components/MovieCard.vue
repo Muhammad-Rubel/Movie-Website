@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-lg">
+  <div class="rounded-lg relative z-0 h-full">
     <!-- Image -->
     <div class="relative">
       <nuxt-link :to="`/movies/${data.id}`">
@@ -37,11 +37,12 @@
 
       <!-- options -->
       <div class="absolute top-4 right-2 opacity-60">
-        <button class="text-white hover:text-blue">
+        <button
+          class="text-white hover:text-blue"
+          @click="showOptions = !showOptions"
+        >
           <Icons name="dots"></Icons>
         </button>
-
-        <div></div>
       </div>
     </div>
 
@@ -59,6 +60,44 @@
         {{ $moment(data.release_date).format('MMM DD, YYYY') || '' }}
       </p>
     </div>
+
+    <!-- options -->
+    <div
+      v-if="showOptions"
+      v-on-clickaway="onClickAwayCard"
+      class="absolute top-12 right-2 bg-white w-36 divide-y rounded z-10 overflow-hidden"
+    >
+      <button
+        class="flex justify-start items-center space-x-2 px-6 py-2.5 w-full hover:bg-darkBlue hover:text-white custom-transition"
+      >
+        <icons name="list" class-list="w-3"></icons>
+        <span class="text-gray-500 text-sm">Add to list</span>
+      </button>
+      <button
+        class="flex justify-start items-center space-x-2 px-6 py-2.5 w-full hover:bg-darkBlue hover:text-white custom-transition"
+      >
+        <icons name="heart" class-list="w-3"></icons>
+        <span class="text-gray-500 text-sm">Favourite</span>
+      </button>
+      <button
+        class="flex justify-start items-center space-x-2 px-6 py-2.5 w-full hover:bg-darkBlue hover:text-white custom-transition"
+      >
+        <icons name="bookmark" class-list="w-3"></icons>
+        <span class="text-gray-500 text-sm">Watchlist</span>
+      </button>
+      <button
+        class="flex justify-start items-center space-x-2 px-6 py-2.5 w-full hover:bg-darkBlue hover:text-white custom-transition"
+      >
+        <icons name="star" class-list="w-3"></icons>
+        <span class="text-gray-500 text-sm">Your rating</span>
+      </button>
+    </div>
+
+    <!-- placeholder -->
+    <div
+      v-if="showOptions"
+      class="absolute top-0 left-0 right-0 h-full z-0 bg-black bg-opacity-60 filter backdrop-blur-xl rounded-lg"
+    ></div>
   </div>
 </template>
 
@@ -92,6 +131,13 @@ export default {
       return (vote) => {
         return vote * 10
       }
+    },
+  },
+
+  methods: {
+    onClickAwayCard() {
+      this.showOptions = false
+      console.log(this.showOptions)
     },
   },
 }
