@@ -49,8 +49,12 @@
                 <img
                   :src="
                     getImage(
-                      configuration.images.secure_base_url,
-                      configuration.images.poster_sizes[3],
+                      configuration &&
+                        configuration.images &&
+                        configuration.images.secure_base_url,
+                      configuration &&
+                        configuration.images &&
+                        configuration.images.poster_sizes[3],
                       item.poster_path
                     )
                   "
