@@ -30,5 +30,5 @@ button {
 }
 
 .tab-button {
-  @apply px-6 py-1 rounded-3xl
+  @apply px-3 md:px-6 py-1 rounded-3xl text-sm md:text-base
 }

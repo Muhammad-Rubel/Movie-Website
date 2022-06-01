@@ -2,7 +2,9 @@
   <header class="bg-gray-900 shadow-2xl fixed top-0 left-0 right-0 z-40">
     <div class="width-1200 p-4 flex justify-between items-center">
       <div>
-        <a href="/" class="text-3xl text-primary font-bold">TMDB</a>
+        <a href="/" class="">
+          <img src="~/assets/images/tmdb-1.svg" alt="" class="w-14" />
+        </a>
       </div>
 
       <!-- nav -->

@@ -1,8 +1,8 @@
 <template>
-  <footer class="p-6">
+  <footer class="p-6 bg-darkBlue">
     <div class="xl:grid grid-cols-5 gap-6">
       <div class="col-start-1 col-end-2">
-        <a href="" class="text-3xl text-primary font-bold">
+        <a href="" class="">
           <img src="~/assets/images/tmdb-1.svg" alt="" class="w-16 xl:w-32" />
         </a>
       </div>
@@ -11,7 +11,9 @@
         class="mt-12 space-y-6 md:space-y-0 md:grid grid-cols-4 gap-6 col-start-2 col-end-6 xl:mt-0"
       >
         <div v-for="(item, i) in items" :key="i">
-          <h4 class="text-lg uppercase font-semibold">{{ item.title }}</h4>
+          <h4 class="text-lg uppercase font-semibold text-white">
+            {{ item.title }}
+          </h4>
 
           <ul class="space-y-1">
             <li v-for="(subItem, z) in item.subItems" :key="z">
@@ -25,8 +27,10 @@
     </div>
 
     <!-- copyright -->
-    <div class="pt-6">
-      <p class="p-6 pb-2 text-center">&copy; copyright TMDB</p>
+    <div class="pt-8">
+      <p class="px-6 text-sm text-center text-darkerGrey">
+        &copy; copyright TMDB
+      </p>
     </div>
   </footer>
 </template>

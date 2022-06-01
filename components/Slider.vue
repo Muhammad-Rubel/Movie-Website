@@ -35,6 +35,10 @@ export default {
         perPage: 5,
         gap: '2rem',
         pagination: false,
+        padding: {
+          left: '1rem',
+          right: '1rem',
+        },
         breakpoints: {
           1024: {
             perPage: 4,

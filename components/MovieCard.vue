@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <nuxt-link :to="`/movies/${data.id}`">
-      <!-- Image -->
-      <div>
+  <div class="rounded-lg">
+    <!-- Image -->
+    <div>
+      <nuxt-link :to="`/movies/${data.id}`">
         <img
           :src="
             getImage(
@@ -12,22 +12,27 @@
             ) || ''
           "
           alt=""
-          class="w-full"
+          class="w-full rounded-lg"
         />
-      </div>
+      </nuxt-link>
+    </div>
 
-      <!-- text -->
-      <div class="mt-2">
-        <div class="text-sm flex justify-between items-center">
-          <span>Rating: {{ data.vote_average || '' }}</span>
-          <span>{{ data.release_date || '' }}</span>
-        </div>
-        <h4 class="mt-1 text-primary line-clamp-2 text-lg">
-          <span v-if="data.title">{{ data.title || '' }}</span>
-          <span v-if="data.name">{{ data.name || '' }}</span>
-        </h4>
-      </div>
-    </nuxt-link>
+    <!-- text -->
+    <div class="mt-2">
+      <span>
+        <span>{{ data.vote_average * 10 || '' }}%</span>
+      </span>
+
+      <nuxt-link
+        :to="`/movies/${data.id}`"
+        class="mt-1 text-primary line-clamp-2 text-lg"
+      >
+        <span v-if="data.title">{{ data.title || '' }}</span>
+        <span v-if="data.name">{{ data.name || '' }}</span>
+      </nuxt-link>
+
+      <span>{{ data.release_date || '' }}</span>
+    </div>
   </div>
 </template>
 
