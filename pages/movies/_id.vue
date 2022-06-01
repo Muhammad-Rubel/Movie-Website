@@ -1,44 +1,17 @@
 <template>
   <div>
-    <div class="relative">
-      <img
-        :src="
-          getImage(
-            configuration.images.secure_base_url,
-            configuration.images.backdrop_sizes[3],
-            data && data.backdrop_path
-          )
-        "
-        alt=""
-        class="absolute top-0 left-0 w-full h-full object-cover ovject-center z-0 opacity-10"
-      />
-
-      <!-- text -->
-      <div class="relative z-10 width-1200">
-        <img
-          :src="
-            getImage(
-              configuration.images.secure_base_url,
-              configuration.images.poster_sizes[3],
-              data.poster_path
-            )
-          "
-          alt=""
-          class=""
-        />
-
-        <h2>{{ data.original_title || '' }}</h2>
-        <p>{{ data.overview || '' }}</p>
-      </div>
-    </div>
+    <general-info :data="details" :cast-n-crews="castNCrews"></general-info>
   </div>
 </template>
 
 <script>
+import GeneralInfo from '../../components/movie/GeneralInfo.vue'
 export default {
+  components: { GeneralInfo },
   data() {
     return {
-      data: null,
+      details: null,
+      castNCrews: null,
     }
   },
 
@@ -46,24 +19,23 @@ export default {
     const id = this.$route.params.id
 
     try {
-      const res = await this.$axios.$get(
+      const details = await this.$axios.$get(
         `${this.apiUrl}/movie/${id}?api_key=${this.apiKey}`
       )
 
-      console.log(res)
-      this.data = res
+      const castNCrews = await this.$axios.$get(
+        `${this.apiUrl}/movie/${id}/credits?api_key=${this.apiKey}`
+      )
+
+      console.log(details, castNCrews)
+      this.details = details
+      this.castNCrews = castNCrews
     } catch (err) {
       console.log(err)
     }
   },
 
   computed: {
-    getImage() {
-      return (baseUrl, fileSize, filePath) => {
-        return `${baseUrl}${fileSize}${filePath}`
-      }
-    },
-
     apiKey() {
       return this.$store.state.apiKey
     },
