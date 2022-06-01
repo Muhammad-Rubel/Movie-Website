@@ -2,7 +2,7 @@
   <section>
     <div class="mt-6 custom-shadow">
       <div class="">
-        <Splide :options="options">
+        <Splide :options="options" @splide:visible="onMoved">
           <SplideSlide v-for="(item, i) in data" :key="i">
             <movie-card :data="item"></movie-card>
           </SplideSlide>
@@ -33,6 +33,7 @@ export default {
       options: {
         type: 'slide',
         perPage: 7,
+        // perMove: 1,
         gap: '1rem',
         pagination: false,
         padding: {
@@ -57,10 +58,24 @@ export default {
           },
           450: {
             perPage: 2,
+            padding: {
+              right: '5rem',
+            },
           },
         },
       },
     }
+  },
+
+  methods: {
+    onMoved(splide, prev) {
+      // console.log(splide, prev)
+      if (prev.index + 1 === this.data.length) {
+        this.options.padding.right = '0rem'
+      }
+
+      console.log(this.options.padding.right)
+    },
   },
 }
 </script>

@@ -108,9 +108,5 @@ export default {
       return this.$store.state.trendingTvShowsWeek
     },
   },
-
-  mounted() {
-    console.log('Test', this.configuration)
-  },
 }
 </script>
