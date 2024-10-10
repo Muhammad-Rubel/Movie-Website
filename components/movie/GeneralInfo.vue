@@ -162,7 +162,7 @@ export default {
 
     getCrewByJob() {
       return (crews, title) => {
-        const obj = crews.filter((crew) => crew.job === title)
+        const obj = crews?.filter((crew) => crew.job === title)
 
         return obj
       }

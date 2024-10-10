@@ -2,7 +2,7 @@
   <div>
     <general-info :data="details" :cast-n-crews="castNCrews"></general-info>
 
-    <cast :data="castNCrews.cast"></cast>
+    <cast :data="castNCrews.cast || []"></cast>
   </div>
 </template>
 
@@ -14,8 +14,8 @@ export default {
 
   data() {
     return {
-      details: null,
-      castNCrews: null,
+      details: {},
+      castNCrews: {},
     }
   },
 
@@ -31,9 +31,11 @@ export default {
         `${this.apiUrl}/movie/${id}/credits?api_key=${this.apiKey}`
       )
 
-      console.log(details, castNCrews)
       this.details = details
       this.castNCrews = castNCrews
+
+      console.log('details', this.details)
+      console.log('castNCrews', this.castNCrews)
     } catch (err) {
       console.log(err)
     }
